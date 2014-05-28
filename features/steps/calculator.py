@@ -1,3 +1,5 @@
+import re
+
 @when(u'I go to the tip calculator')
 def step_impl(context):
     context.browser.get('http://localhost:5000')
@@ -34,5 +36,5 @@ def step_impl(context):
 @then(u'I should see a tip result of 10')
 def step_impl(context):
     br = context.browser
-    r = get_element(br, id='results')
-    assert r.text.startswith("10")
+    r = str(br.find_element_by_id('results'))
+    assert r.find('10')
